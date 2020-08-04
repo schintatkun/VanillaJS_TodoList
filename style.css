@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: linear-gradient(90deg, hsl(167, 89%, 68%), #0e6ae2);
+    background-image: linear-gradient(90deg, #34fcf2, #0e6ae2);
     color: whitesmoke;
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
@@ -39,4 +39,41 @@ form button{
 form button:hover{
     background: #0e6ae2;
     color: white; 
+}
+
+.todo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo-list{
+    min-width: 30%;
+    list-style: none;
+}
+.todo {
+    margin: 0.5rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.todo li{
+    /* push checkmark and tash icons to the far right */
+    flex: 1;
+}
+.trash-btn, .complete-btn{
+    background: #0e6ae2;
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.complete-btn{
+    background: #0fece1; 
+}
+.todo-item {
+    padding: 0rem 0.5rem;
 }
