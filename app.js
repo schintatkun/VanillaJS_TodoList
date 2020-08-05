@@ -47,7 +47,11 @@ function deleteCheck(e){
     //Delete TODO
     if (item.classList[0] === "trash-btn"){
         const todo = item.parentElement;
-        todo.remove();
+        todo.classList.add('animation-fadeout');
+        //Animation
+        todo.addEventListener('transitionend', function(){
+            todo.remove();
+        })
     }
 
     //Check MARK 

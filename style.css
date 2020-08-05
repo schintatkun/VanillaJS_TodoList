@@ -88,3 +88,8 @@ form button:hover{
     text-decoration: line-through;
     opacity: 0.4;
 }
+
+.animation-fadeout{
+    transform: translate(5rem) ;
+    opacity: 0;
+}
