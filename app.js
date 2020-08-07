@@ -5,9 +5,8 @@ const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".todo-filter");
 
 //Event Listeners
-
-// -- get data from local storage, and display when page is loaded.
-document.addEventListener('DOMContentLoaded', getTodos);
+// -- get data from local storage, and display when page is loaded. --
+document.addEventListener("DOMContentLoaded", getTodos);
 
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
@@ -55,8 +54,10 @@ function deleteCheck(e) {
   //Delete TODO
   if (item.classList[0] === "trash-btn") {
     const todo = item.parentElement;
-    todo.classList.add("animation-fadeout");
     //Animation
+    todo.classList.add("animation-fadeout");
+    // remove todo from local storage
+    removeLocalTodos(todo);
     todo.addEventListener("transitionend", function () {
       todo.remove();
     });
@@ -108,17 +109,16 @@ function saveLocalTodos(todo) {
 function getTodos() {
   //todos is data from local storage
   let todos;
-  
-    //Check if local storage contian existing todo list
+
+  //Check if local storage contian existing todo list
   if (localStorage.getItem("todos") === null) {
     todos = [];
   } else {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
-  
+
   // iterate all data in todos then display when page loaded
   todos.forEach(function (todo) {
-
     //Todo DIV - create todo Div
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
@@ -144,4 +144,21 @@ function getTodos() {
     //Append to LIST
     todoList.appendChild(todoDiv);
   });
+}
+
+function removeLocalTodos(todo) {
+  //Check if local storage contian existing todo list
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  //Get todo title as a text
+  const todoTitle = todo.children[0].innerText;
+
+  //Delete todo at indexOf
+  todos.splice(todos.indexOf(todoTitle), 1);
+
+  //Update local storage after selected todo has been removed.
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
